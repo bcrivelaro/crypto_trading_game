@@ -23,4 +23,15 @@ RSpec.describe User, type: :model do
       expect(user.current_cycle).to eq(current)
     end
   end
+
+  describe '#points' do
+    it 'return sum of cycles points' do
+      user = create :user
+      create :cycle, user: user, current: false, points: 1
+      create :cycle, user: user, current: false, points: 2
+      create :cycle, user: user, current: true, points: nil
+
+      expect(user.points).to eq(3)
+    end
+  end
 end

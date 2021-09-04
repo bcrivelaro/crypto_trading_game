@@ -11,4 +11,8 @@ class User < ApplicationRecord
   def current_cycle
     cycles.current.first
   end
+
+  def points
+    cycles.where.not(points: nil).sum(:points)
+  end
 end
