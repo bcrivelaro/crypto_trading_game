@@ -1,5 +1,6 @@
 class Cycle < ApplicationRecord
   belongs_to :user
+  has_one :wallet
 
   enum mode: { easy: 'easy', hard: 'hard' }
 

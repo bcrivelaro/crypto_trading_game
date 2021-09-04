@@ -3,6 +3,7 @@ RSpec.describe Cycle, type: :model do
 
   describe 'associations' do
     it { should belong_to(:user) }
+    it { should have_one(:wallet) }
   end
 
   describe 'validations' do
