@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_04_173734) do
+ActiveRecord::Schema.define(version: 2021_09_04_174053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 2021_09_04_173734) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "wallet_entries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "wallet_id", null: false
+    t.uuid "currency_id", null: false
+    t.decimal "amount", precision: 30, scale: 20, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["currency_id"], name: "index_wallet_entries_on_currency_id"
+    t.index ["wallet_id"], name: "index_wallet_entries_on_wallet_id"
+  end
+
   create_table "wallets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "cycle_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -50,5 +60,7 @@ ActiveRecord::Schema.define(version: 2021_09_04_173734) do
   end
 
   add_foreign_key "cycles", "users"
+  add_foreign_key "wallet_entries", "currencies"
+  add_foreign_key "wallet_entries", "wallets"
   add_foreign_key "wallets", "cycles"
 end
