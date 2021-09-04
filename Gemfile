@@ -8,6 +8,7 @@ gem 'pg', '~> 1.1'
 gem 'dotenv-rails', '2.7.6'
 gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'bcrypt', '3.1.16'
 gem 'lograge', '0.11.2'
 
 group :development, :test do
@@ -18,13 +19,13 @@ group :development, :test do
   gem 'pry-rails', '0.3.9'
   gem 'rubocop', '1.20.0', require: false
   gem 'rubocop-rails', '2.11.3'
+  gem 'bullet', '6.1.5'
 end
 
 group :development do
   gem 'listen', '~> 3.3'
   gem 'spring'
   gem 'simplecov', '0.21.2', require: false
-  gem 'bullet', '6.1.5'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
