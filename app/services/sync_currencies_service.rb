@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SyncCurrenciesService
   def self.call
     new.call
@@ -18,25 +20,23 @@ class SyncCurrenciesService
     trs = tbody.find_elements(:css, 'tr')
 
     trs.each do |tr|
-      begin
-        tds = tr.find_elements(:css, 'td')
+      tds = tr.find_elements(:css, 'td')
 
-        if tds[2].text.include?("\n")
-          name, symbol = tds[2].text.split("\n")
-        else
-          cmc_link_children = tds[2].find_element(:css, '.cmc-link')
-                                    .find_elements(:xpath, '*')
-          name = cmc_link_children[1].text
-          symbol = cmc_link_children[2].text
-        end
-
-        price = BigDecimal(tds[3].text.gsub('$', '').gsub(',', ''))
-
-        currency = Currency.find_or_create_by(name: name, symbol: symbol)
-        currency.historic_values.create!(usd: price, btc: 1, value_at: now)
-      rescue => error
-        puts error
+      if tds[2].text.include?("\n")
+        name, symbol = tds[2].text.split("\n")
+      else
+        cmc_link_children = tds[2].find_element(:css, '.cmc-link')
+                                  .find_elements(:xpath, '*')
+        name = cmc_link_children[1].text
+        symbol = cmc_link_children[2].text
       end
+
+      price = BigDecimal(tds[3].text.gsub('$', '').gsub(',', ''))
+
+      currency = Currency.find_or_create_by(name: name, symbol: symbol)
+      currency.historic_values.create!(usd: price, btc: 1, value_at: now)
+    rescue StandardError => e
+      puts e
     end
 
     driver.quit

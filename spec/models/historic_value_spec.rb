@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe HistoricValue, type: :model do
   subject { build :historic_value }
 

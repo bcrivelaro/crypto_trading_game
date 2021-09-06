@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe WalletEntry, type: :model do
   subject { build :wallet_entry }
 

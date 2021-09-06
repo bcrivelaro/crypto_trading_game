@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class WalletEntry < ApplicationRecord
   belongs_to :wallet
   belongs_to :currency

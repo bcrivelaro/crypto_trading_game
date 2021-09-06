@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HistoricValue < ApplicationRecord
   belongs_to :valueable, polymorphic: true
 

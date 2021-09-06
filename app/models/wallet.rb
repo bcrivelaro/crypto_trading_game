@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Wallet < ApplicationRecord
   belongs_to :cycle
   has_many :wallet_entries

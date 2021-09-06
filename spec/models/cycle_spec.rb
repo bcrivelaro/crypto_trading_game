@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Cycle, type: :model do
   subject { build :cycle }
 
@@ -8,9 +10,9 @@ RSpec.describe Cycle, type: :model do
 
   describe 'validations' do
     it do
-      should define_enum_for(:mode).
-        with_values(easy: 'easy', hard: 'hard').
-        backed_by_column_of_type(:string)
+      should define_enum_for(:mode)
+        .with_values(easy: 'easy', hard: 'hard')
+        .backed_by_column_of_type(:string)
     end
     it { should validate_numericality_of(:points).only_integer }
     it { should validate_numericality_of(:order).only_integer }

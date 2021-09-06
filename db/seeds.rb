@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -8,28 +10,26 @@
 
 require 'factory_bot'
 
-puts "destroying all resources..."
+puts 'destroying all resources...'
 WalletEntry.destroy_all
 Currency.destroy_all
 Wallet.destroy_all
 Cycle.destroy_all
 User.destroy_all
 
-puts "creating currencies..."
+puts 'creating currencies...'
 usd = Currency.create!(name: 'United States Dollar', symbol: 'USD')
 btc = Currency.create!(name: 'Bitcoin', symbol: 'BTC')
 eth = Currency.create!(name: 'Ethereum', symbol: 'ETH')
 ada = Currency.create!(name: 'Cardano', symbol: 'ADA')
 xrp = Currency.create!(name: 'XRP', symbol: 'XRP')
 
-puts "creating users..."
+puts 'creating users...'
 users = FactoryBot.create_list :user, 10
 
-puts "creating cycles and wallets..."
+puts 'creating cycles and wallets...'
 users.each do |user|
   cycle = user.cycles.create!(mode: :easy, current: true, points: nil, order: 1)
   wallet = Wallet.create!(cycle: cycle)
   wallet.wallet_entries.create!(currency: usd, amount: 10_000.to_f)
 end
-
-
