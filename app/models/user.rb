@@ -9,7 +9,11 @@ class User < ApplicationRecord
   validates :member, inclusion: { in: [true, false] }
 
   def current_cycle
-    cycles.current.first
+    cycles.find_by(current: true)
+  end
+
+  def current_wallet
+    current_cycle.wallet
   end
 
   def points

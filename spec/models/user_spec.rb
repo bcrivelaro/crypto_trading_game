@@ -14,13 +14,27 @@ RSpec.describe User, type: :model do
   end
 
   describe '#current_cycle' do
-    it 'returns current_cycle' do
+    it 'returns current cycle' do
       user = create :user
       create :cycle, user: user, current: false
       create :cycle, user: user, current: false
       current = create :cycle, user: user, current: true
 
       expect(user.current_cycle).to eq(current)
+    end
+  end
+
+  describe '#current_wallet' do
+    it 'returns current wallet' do
+      user = create :user
+      cycle_1 = create :cycle, user: user, current: false
+      create :wallet, cycle: cycle_1
+      cycle_2 = create :cycle, user: user, current: false
+      create :wallet, cycle: cycle_2
+      current_cycle = create :cycle, user: user, current: true
+      current_wallet = create :wallet, cycle: current_cycle
+
+      expect(user.current_wallet).to eq(current_wallet)
     end
   end
 
