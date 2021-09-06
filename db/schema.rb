@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_04_174053) do
+ActiveRecord::Schema.define(version: 2021_09_06_033513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -31,6 +31,17 @@ ActiveRecord::Schema.define(version: 2021_09_04_174053) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_cycles_on_user_id"
+  end
+
+  create_table "historic_values", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.decimal "usd", precision: 30, scale: 20, null: false
+    t.decimal "btc", precision: 30, scale: 20, null: false
+    t.datetime "value_at", default: -> { "now()" }, null: false
+    t.uuid "valueable_id", null: false
+    t.string "valueable_type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["valueable_type", "valueable_id"], name: "index_historic_values_on_valueable_type_and_valueable_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
