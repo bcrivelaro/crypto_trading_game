@@ -16,11 +16,11 @@ Cycle.destroy_all
 User.destroy_all
 
 puts "creating currencies..."
-usd = Currency.create!(symbol: 'USD')
-btc = Currency.create!(symbol: 'BTC')
-eth = Currency.create!(symbol: 'ETH')
-ada = Currency.create!(symbol: 'ADA')
-xrp = Currency.create!(symbol: 'XRP')
+usd = Currency.create!(name: 'United States Dollar', symbol: 'USD')
+btc = Currency.create!(name: 'Bitcoin', symbol: 'BTC')
+eth = Currency.create!(name: 'Ethereum', symbol: 'ETH')
+ada = Currency.create!(name: 'Cardano', symbol: 'ADA')
+xrp = Currency.create!(name: 'XRP', symbol: 'XRP')
 
 puts "creating users..."
 users = FactoryBot.create_list :user, 10
