@@ -1,4 +1,4 @@
 sync_currencies_worker:
-  cron: "*/5 * * * *"
+  cron: "*/3 * * * *"
   class: "SyncCurrenciesWorker"
   queue: sync

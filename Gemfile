@@ -13,7 +13,7 @@ gem 'lograge', '0.11.2'
 gem 'redis', '4.4.0'
 gem 'sidekiq', '6.2.2'
 gem 'sidekiq-cron', '1.2.0'
-gem 'mechanize', '2.8.2'
+gem 'selenium-webdriver', '3.142.7'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

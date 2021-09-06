@@ -2,7 +2,8 @@ FROM ruby:2.7.2-alpine
 LABEL maintainer="bcrivelaro"
 
 RUN apk --update add build-base nodejs yarn postgresql-client postgresql-dev \
-  tzdata bash less && rm -rf /var/cache/apk/
+  tzdata bash less chromium chromium-chromedriver python3 python3-dev py3-pip \
+  && rm -rf /var/cache/apk/
 
 ENV APP_HOME /crypto_trading_game
 RUN mkdir $APP_HOME
