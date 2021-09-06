@@ -10,6 +10,10 @@ gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'bcrypt', '3.1.16'
 gem 'lograge', '0.11.2'
+gem 'redis', '4.4.0'
+gem 'sidekiq', '6.2.2'
+gem 'sidekiq-cron', '1.2.0'
+gem 'mechanize', '2.8.2'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

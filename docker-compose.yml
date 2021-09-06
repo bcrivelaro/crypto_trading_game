@@ -22,3 +22,14 @@ services:
       - redis
     stdin_open: true
     tty: true
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    volumes:
+      - .:/crypto_trading_game
+    env_file: .env
+    depends_on:
+      - db
+      - redis
+    stdin_open: true
+    tty: true
