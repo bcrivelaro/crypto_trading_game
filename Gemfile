@@ -9,6 +9,7 @@ gem 'bcrypt', '3.1.16'
 gem 'bigdecimal', '3.0.2'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'dotenv-rails', '2.7.6'
+gem 'jwt', '2.2.3'
 gem 'lograge', '0.11.2'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
