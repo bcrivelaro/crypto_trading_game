@@ -14,6 +14,7 @@ gem 'redis', '4.4.0'
 gem 'sidekiq', '6.2.2'
 gem 'sidekiq-cron', '1.2.0'
 gem 'selenium-webdriver', '3.142.7'
+gem 'bigdecimal', '3.0.2'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

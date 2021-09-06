@@ -24,15 +24,13 @@ class SyncCurrenciesService
         if tds[2].text.include?("\n")
           name, symbol = tds[2].text.split("\n")
         else
-          name = tds[2].find_element(:css, '.cmc-link')
-                       .find_elements(:xpath, '*')[1]
-                       .text
-          symbol = tds[2].find_element(:css, '.cmc-link')
-                         .find_elements(:xpath, '*')[2]
-                         .text
+          cmc_link_children = tds[2].find_element(:css, '.cmc-link')
+                                    .find_elements(:xpath, '*')
+          name = cmc_link_children[1].text
+          symbol = cmc_link_children[2].text
         end
 
-        price = tds[3].text.gsub('$', '').gsub(',', '').to_f
+        price = BigDecimal(tds[3].text.gsub('$', '').gsub(',', ''))
 
         currency = Currency.find_or_create_by(name: name, symbol: symbol)
         currency.historic_values.create!(usd: price, btc: 1, value_at: now)
