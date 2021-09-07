@@ -7,6 +7,10 @@ class ApplicationController < ActionController::API
 
   private
 
+  def current_user
+    @current_user
+  end
+
   def authenticate_user!
     header = request.headers['Authorization']
     header = header.split(' ').last if header

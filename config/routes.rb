@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       end
 
       resources :currencies, only: :index
+      resource :wallet, only: :show
     end
   end
 end

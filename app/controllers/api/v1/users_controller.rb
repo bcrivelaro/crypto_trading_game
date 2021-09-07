@@ -20,8 +20,8 @@ module Api
       end
 
       def password
-        if @current_user&.authenticate(update_pw_params[:current_password])
-          if @current_user.update(password: update_pw_params[:new_password],
+        if current_user&.authenticate(update_pw_params[:current_password])
+          if current_user.update(password: update_pw_params[:new_password],
                                   password_confirmation: update_pw_params[:new_password_confirmation])
 
             head :ok
