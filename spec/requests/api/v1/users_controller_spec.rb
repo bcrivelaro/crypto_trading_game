@@ -79,7 +79,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
       end
     end
 
-    context 'when current_password is valid' do
+    context 'when current_password is invalid' do
       it 'returns 401 UNAUTHORIZED' do
         user = create :user, password: '123456PW'
         params = {
@@ -92,6 +92,22 @@ RSpec.describe Api::V1::UsersController, type: :request do
                                           headers: auth_header(user)
 
         expect(response).to have_http_status(401)
+      end
+    end
+
+    context 'when new_password_confirmation is invalid' do
+      it 'returns 422 UNPROCESSABLE ENTITY' do
+        user = create :user, password: '123456PW'
+        params = {
+          current_password: '123456PW',
+          new_password: '878787Foo',
+          new_password_confirmation: 'invalid'
+        }
+
+        patch password_api_v1_users_path, params: { user: params },
+                                          headers: auth_header(user)
+
+        expect(response).to have_http_status(422)
       end
     end
   end
