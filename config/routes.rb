@@ -10,7 +10,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/auth/login', to: 'authentication#login'
 
-      resources :users, only: :create
+      resources :users, only: :create do
+        collection do
+          patch :password
+        end
+      end
     end
   end
 end
