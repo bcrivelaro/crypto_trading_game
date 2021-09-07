@@ -7,14 +7,12 @@ class ApplicationController < ActionController::API
 
   private
 
-  def current_user
-    @current_user
-  end
+  attr_reader :current_user
 
   def authenticate_user!
     header = request.headers['Authorization']
     header = header.split(' ').last if header
-    return head :unauthorized if !header
+    return head :unauthorized unless header
 
     begin
       @decoded = JwtService.decode(header)

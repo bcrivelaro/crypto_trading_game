@@ -17,17 +17,18 @@ Rails.application.routes.draw do
       end
 
       resources :currencies, only: :index
+
       resources :cycles, only: [] do
         collection do
           get :current
         end
       end
+
       resources :wallets, only: [] do
         collection do
           get :current
         end
       end
-
     end
   end
 end
