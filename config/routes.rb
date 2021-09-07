@@ -15,6 +15,8 @@ Rails.application.routes.draw do
           patch :password
         end
       end
+
+      resources :currencies, only: :index
     end
   end
 end

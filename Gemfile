@@ -11,6 +11,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'dotenv-rails', '2.7.6'
 gem 'jwt', '2.2.3'
 gem 'lograge', '0.11.2'
+gem 'pagy', '4.11.0'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
