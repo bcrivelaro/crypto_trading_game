@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Api::V1::UsersController, type: :request do
   describe 'POST /api/v1/users' do
     context 'when params are valid' do
@@ -9,9 +11,9 @@ RSpec.describe Api::V1::UsersController, type: :request do
           password_confirmation: '123456PW'
         }
 
-        expect {
+        expect do
           post api_v1_users_path, params: { user: params }
-        }.to change { User.count }.by(1)
+        end.to change { User.count }.by(1)
 
         response_body = JSON.parse(response.body)
         expect(response).to have_http_status(201)
@@ -25,12 +27,12 @@ RSpec.describe Api::V1::UsersController, type: :request do
           email: 'myemail@email.com',
           nickname: 'random_123',
           password: '123456PW',
-          password_confirmation: 'invalid',
+          password_confirmation: 'invalid'
         }
 
-        expect {
+        expect do
           post api_v1_users_path, params: { user: params }
-        }.to change { User.count }.by(0)
+        end.to change { User.count }.by(0)
 
         response_body = JSON.parse(response.body)
         expect(response).to have_http_status(422)
@@ -45,12 +47,12 @@ RSpec.describe Api::V1::UsersController, type: :request do
           email: '',
           nickname: '',
           password: '123456PW',
-          password_confirmation: '123456PW',
+          password_confirmation: '123456PW'
         }
 
-        expect {
+        expect do
           post api_v1_users_path, params: { user: params }
-        }.to change { User.count }.by(0)
+        end.to change { User.count }.by(0)
 
         response_body = JSON.parse(response.body)
         expect(response).to have_http_status(422)

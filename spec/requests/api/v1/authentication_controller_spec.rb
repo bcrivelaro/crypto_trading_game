@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe Api::V1::AuthenticationController, type: :request do
   describe 'POST /api/v1/auth/login' do
     context 'when credentials are correct' do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class JwtService
   SECRET_KEY = ENV['JWT_SECRET_KEY']
 

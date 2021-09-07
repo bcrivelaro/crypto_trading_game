@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AuthHelpers
   def auth_header(user)
     token = JwtService.encode(user_id: user.id)

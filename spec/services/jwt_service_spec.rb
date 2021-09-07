@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe JwtService do
   describe '.encode' do
     it 'returns encoded payload' do
