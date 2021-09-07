@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe Api::V1::WalletsController, type: :request do
-  describe 'GET /api/v1/wallet' do
+  describe 'GET /api/v1/wallets/current' do
     context 'when not authenticated' do
       it 'returns 401 UNAUTHORIZED' do
-        get api_v1_currencies_path
+        get current_api_v1_wallets_path
 
         expect(response).to have_http_status(401)
       end
@@ -25,7 +25,7 @@ RSpec.describe Api::V1::WalletsController, type: :request do
         create :wallet_entry, wallet: wallet, currency: currency_3,
                               amount: 0.0005742
 
-        get api_v1_wallet_path, headers: auth_header(user)
+        get current_api_v1_wallets_path, headers: auth_header(user)
 
         response_body = JSON.parse(response.body)
         expect(response).to have_http_status(200)
