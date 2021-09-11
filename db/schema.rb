@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_09_06_172952) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
+    t.index ["symbol"], name: "index_currencies_on_symbol", unique: true
   end
 
   create_table "cycles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -52,6 +53,8 @@ ActiveRecord::Schema.define(version: 2021_09_06_172952) do
     t.boolean "member", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["nickname"], name: "index_users_on_nickname", unique: true
   end
 
   create_table "wallet_entries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
