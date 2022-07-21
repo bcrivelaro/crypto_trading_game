@@ -1,4 +1,4 @@
-FROM ruby:2.7.2-alpine
+FROM ruby:2.7.6-alpine
 LABEL maintainer="bcrivelaro"
 
 RUN apk --update add build-base nodejs yarn postgresql-client postgresql-dev \
@@ -12,7 +12,7 @@ WORKDIR $APP_HOME
 # Install gems
 COPY Gemfile Gemfile.lock $APP_HOME/
 
-RUN gem install bundler:2.2.9
+RUN gem install bundler:2.3.18
 RUN bundle install -j "$(getconf _NPROCESSORS_ONLN)" --retry 5
 
 COPY . $APP_HOME
